@@ -61,3 +61,19 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+
+    - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
+      displayName: 'Prepare analysis on SonarQube'
+      inputs:
+        SonarQube: 'Div-SQ_Server'
+        scannerMode: CLI
+        extraProperties: |
+          # Additional properties that will be passed to the scanner, 
+          # Put one key=value per line, example:
+          # sonar.exclusions=**/*.bin
+          sonar.projectKey=HelloWorld
+          sonar.projectName=Hello_World
+          sonar.language=py
+          sonar.cs.vscoveragexml.reportPaths=**/*.coveragexml
+    - task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
+      displayName: 'Run Code Analysis'
