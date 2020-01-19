@@ -12,6 +12,8 @@ After coding, I generated an Azure Function known as "dpfunc01", which would be 
 # Step 3 - Creation of Build Pipeline
 Next, I created a project within Azure DevOps and connected this repository to a Build pipeline. DevOps then generated the YAML file that allowed the Build pipeline to be created. One possible issue encountered here is that, while the project gets built successfully, it proceeds to deploying it to the stated Azure Function without the need of a Release pipeline (I used the "Python Function App to Linux on Azure" option). I figured it may be there for the purpose of deploying it to a test Function app before making a Release, which would actually deploy it to an in-production Function app. Regardless, it does not affect the runnability of the pipeline.
 
+Edit: I noticed the reason for deployment during Build stage, as it was included automatically within the YAML file. I went ahead and removed this section of code.
+
 # Step 4 - Creation of Release Pipeline (SonarQube Quality Scanning)
 Arguably the toughest section of this project was the creation of the Release pipeline. It involved learning much in-depth knowledege about Azure applications, project properties, service connections, etc. As developing the stages were the more robust processes, I have listed them here:
 
