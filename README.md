@@ -23,5 +23,17 @@ Arguably the toughest section of this project was the creation of the Release pi
 
 Regarding pre- and post-deployment conditions, I only used two post-deployment approval requirements: one on the SonarQube stage and another on the deployment stage, all addressed to myself. I felt that these were the most logical locations to insert these conditions from a self-testing standpoint. Finally, for ease-of-use I enabled Continuous Deployment in the Artifact to initialize the creation of a Release whenever a Build is made.
 
+# Step 5 - Final Project Edits
+After ensuring all the steps above worked properly, the last step of the project was to change the structure of the pipelines to meet project tasks and illustrate how the CI/CD pipeline would look in the real world. I have numbered these steps below:
+
+1. Firstly, the SonarQube Scan step was included in the Release pipeline, when it should be included in the Build pipeline. Therefore, I first deleted the SonarQube stage from the Release pipeline and then inserted SonarQube tasks inside the YAML file of the Build pipeline.
+2. Next, I needed to change the pipeline to demonstrate a realistic route-to-live. Thus, I created four separate deployment stages (for the purpose of this project, I have set the deployment to the same Azure Function, dpfunc01): 
+- The first stage represents Development cycle in which the developer ensures their program works properly
+- Next, the program would be sent to the QA team, who would perform their own checks to rectify the program
+- In the case that a customer is involved in the production of the application, there would  be another stage between QA and Production to allow the customer to check the program
+- Ultimately, after the program passes QA, all checks should be good and the program is ready to be sent into Production. 
+
+In a practical environment, pre and post deployment conditions would include multiple users representing each part of the dev cycle. But in this case, I have put myself as the approver. 
+
 # Conclusion
 This project provided me with hands-on experience with the designing of CI/CD pipelines. From it, I have learned just how powerful pipelines can be, along with the immensity of functions and applications available inside Azure DevOps which were previously unknown to me.  
